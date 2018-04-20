@@ -25,14 +25,24 @@ Route::get('/doctor', 'DoctorController@index')->name('doctor');
 //Receptionist
 Route::get('/receptionist', 'ReceptionistController@index')->name('receptionist');
 
-Route::get('/test', function(){
-    $patients = App\Patient::all();
-    foreach($patients as $patient){
-         echo $patient->id . ' ' . $patient->name . ' ' . $patient->provider . '<br>';
-    }
-    return view('patientData', ['id' => '1'], ['name' => 'Sarah'], ['provider' => 'Delta']);
+//Check-In Button
+Route::get('/receptionist/patientid', 'ReceptionistController@patientid');
+
+Route::get('/checkin/{id}', 'ReceptionistController@checkin');
+Route::post('/checkin/{id}', 'ReceptionistController@completecheckin');
+
+Route::get('/receptionist/patientid', array('as' => 'patientData', function(){
+    return 'This was a test';
+}));
+
+Route::post('verify', function(){
+    return 'Form was posted';
 });
 
-Route::get('/patientData', function(){
-    return view('patientData');
-});
+// Route::get('/test', function(){
+//     $patients = App\Patient::all();
+//     foreach($patients as $patient){
+//          echo $patient->id . ' ' . $patient->name . ' ' . $patient->provider . '<br>';
+//     }
+//     return view('patientData', ['id' => '1'], ['name' => 'Sarah'], ['provider' => 'Delta']);
+// });
