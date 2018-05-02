@@ -28,7 +28,11 @@ Route::get('/receptionist', 'ReceptionistController@index')->name('receptionist'
 //Check-In Button
 Route::get('/receptionist/patientid', 'ReceptionistController@patientid');
 
+//Example
+Route::get('/patient', 'PatientController@index')->name('patient');
+
 Route::get('/checkin/{id}', 'ReceptionistController@checkin');
+
 Route::post('/checkin/{id}', 'ReceptionistController@completecheckin');
 
 Route::get('/receptionist/patientid', array('as' => 'patientData', function(){
@@ -38,6 +42,11 @@ Route::get('/receptionist/patientid', array('as' => 'patientData', function(){
 Route::post('verify', function(){
     return 'Form was posted';
 });
+
+Route::get('/treat/{id}','DoctorController@treat');
+
+Route::post('/treat/{id}', 'DoctorController@submitTreatment');
+
 
 // Route::get('/test', function(){
 //     $patients = App\Patient::all();
